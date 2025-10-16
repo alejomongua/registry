@@ -12,9 +12,16 @@ services:
       - OTEL_METRICS_EXPORTER=none
       # Reduce log verbosity (possible values: debug, info, warn, error)
       - LOG_LEVEL=info
+      - REGISTRY_HTTP_RELATIVEURLS=false
+      - REGISTRY_HTTP_HOST=https://${DOMAIN}:${NGINX_PORT}
+      # Authentication configuration (uncomment to enable authentication)
+      # - REGISTRY_AUTH=htpasswd
+      # - REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm
+      # - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd
     volumes:
-      # Mount volume for image persistence
       - ./data:/var/lib/registry
+      # Mount authentication files (uncomment to enable authentication)
+      # - ./auth:/auth
     networks:
       - registry-net
 

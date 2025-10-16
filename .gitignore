@@ -12,3 +12,7 @@
 *.log
 
 .env
+
+# Ignore authentication files (keep README)
+/auth/*
+!auth/README.md

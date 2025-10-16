@@ -46,14 +46,41 @@ echo "REGISTRY_HTTP_SECRET set in .env"
 
 You can also test first with `.env.example` by changing the target file in the script if you prefer.
 
+## Add authentication option:
+
+In the host machine, install `apache2-utils` (Debian/Ubuntu) or `httpd-tools` (RHEL/CentOS) to get the `htpasswd` command.
+
+Create an `auth` directory and generate the `htpasswd` file:
+
+```bash
+mkdir auth
+htpasswd -Bc auth/htpasswd admin
+# Password will be prompted
+```
+
+Uncomment the authentication lines in `docker-compose.yml` and uncomment the volume mount for the `auth` directory.
+
+To manage users, use the manage_users.sh script:
+
+```bash
+# Add a user
+./manage_users.sh add
+# Remove a user
+./manage_users.sh delete
+# List users
+./manage_users.sh list
+# Change a user's password
+./manage_users.sh passwd
+``` 
+
 ## Usage:
 
 ```bash
 source .env
 # Tag
 docker tag ruby:2.4.10 ${DOMAIN}:${NGINX_PORT}/ruby-legacy:2.4.10
-# Login is not required because authentication is not implemented by default
-# docker login ${DOMAIN}:${NGINX_PORT}
+# If authentication is enabled, login first
+docker login ${DOMAIN}:${NGINX_PORT}
 # Push
 docker push ${DOMAIN}:${NGINX_PORT}/ruby-legacy:2.4.10
 ```
