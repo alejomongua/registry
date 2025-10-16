@@ -1,0 +1,12 @@
+# Ignore certificates (keep README)
+/certs/*
+!certs/README.md
+
+# Docker
+**/data/**
+
+# OS files
+.DS_Store
+
+# Misc
+*.log

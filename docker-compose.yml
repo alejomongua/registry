@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  registry:
+    image: registry:3
+    restart: always
+    volumes:
+      # Mapea el volumen para persistencia de las imágenes
+      - ./data:/var/lib/registry
+    networks:
+      - registry-net
+
+  nginx:
+    image: nginx:latest
+    restart: always
+    ports:
+      # Expone el puerto 443 (HTTPS) al mundo exterior
+      - "443:443"
+    volumes:
+      # Mapea la configuración de NGINX y los certificados
+      - ./nginx/registry.conf:/etc/nginx/conf.d/default.conf
+      - ./certs:/etc/nginx/certs
+    depends_on:
+      - registry
+    networks:
+      - registry-net
+
+networks:
+  registry-net:
