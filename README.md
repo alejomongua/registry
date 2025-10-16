@@ -2,14 +2,14 @@
 
 ## Layout:
 
-/my-registry/
-├── docker-compose.yml
-├── data/                  <-- Docker will create registry data here
-├── nginx/
-│   └── registry.conf      <-- NGINX configuration
-└── certs/
-    ├── fullchain.pem      <-- Your public SSL certificate (or CA bundle)
-    └── privkey.pem        <-- Your private SSL key
+    /my-registry/
+    ├── docker-compose.yml
+    ├── data/                  <-- Docker will create registry data here
+    ├── nginx/
+    │   └── registry.conf      <-- NGINX configuration
+    └── certs/
+        ├── fullchain.pem      <-- Your public SSL certificate (or CA bundle)
+        └── privkey.pem        <-- Your private SSL key
 
 ## Quick start:
 
