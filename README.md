@@ -18,6 +18,8 @@ Pasos rápidos:
 3. Ejecuta:
 
 ```bash
+cp .env.example .env
+# Edit .env to set your domain and ports
 docker-compose up -d
 ```
 
